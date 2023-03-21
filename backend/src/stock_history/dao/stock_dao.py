@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from src.models.model import CompanyStockHistory
-from src.models.time_range import Period
+from models.model import CompanyStockHistory
+from models.time_range import Period
 
 
 class CompanyStockHistoryDAO(ABC):

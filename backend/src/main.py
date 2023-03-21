@@ -7,8 +7,8 @@ from exceptions import (
 )
 from fastapi import FastAPI
 from middlewares import request_handler
-from src.models.model import CompanyStockHistory
-from src.models.time_range import Period
+from models.model import CompanyStockHistory
+from models.time_range import Period
 from stock_history.stock_repository import ts_repository
 
 __all__ = ("app",)

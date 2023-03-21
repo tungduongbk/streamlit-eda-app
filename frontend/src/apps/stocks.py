@@ -57,9 +57,8 @@ def app():
 
 
 def on_add_favorite():
-    current_ticker = st.session_state.current_ticker
-    if current_ticker is not None:
-        st.session_state.ticker_favorites.add(current_ticker)
+    if "current_ticker" in st.session_state:
+        st.session_state.ticker_favorites.add(st.session_state.current_ticker)
 
 
 def on_clear_favorites():
@@ -69,7 +68,7 @@ def on_clear_favorites():
 @st.cache_data
 def call_ticker_history(text_input: str, period) -> httpx.Response:
     # TODO: Implement query multiple tickers at once - for round trip purpose
-    url = "http://localhost:8083/stocks/search"
+    url = "http://stock-api:8083/stocks/search"
     params = {"query": text_input}
     if period is not None:
         params["period"] = period

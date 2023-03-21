@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  stock-api:
+    container_name: stock-api
+    build:
+      context: backend
+    ports:
+      - "8083:8083"
+
+
+  streamlit-app:
+    container_name: streamlit-app
+    build:
+      context: frontend
+    depends_on:
+      - stock-api
+    ports:
+      - "8501:8501"

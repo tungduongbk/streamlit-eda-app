@@ -3,11 +3,11 @@ from typing import List, Optional
 
 import pandas as pd
 import yahooquery as yf
-from src.company.company_repository import company_repository
-from src.exceptions import TickerNotFoundException
-from src.models.model import CompanyStockHistory, TimeSeries
-from src.models.time_range import Period
-from src.stock_history.dao.stock_dao import CompanyStockHistoryDAO
+from company.company_repository import company_repository
+from exceptions import TickerNotFoundException
+from models.model import CompanyStockHistory, TimeSeries
+from models.time_range import Period
+from stock_history.dao.stock_dao import CompanyStockHistoryDAO
 
 __all__ = ("ts_repository",)
 

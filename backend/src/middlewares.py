@@ -1,7 +1,7 @@
 # # Installed # #
 from fastapi import Request
-from src.config import get_logger
-from src.exceptions import BaseAPIException
+from config import get_logger
+from exceptions import BaseAPIException
 
 __all__ = ("request_handler",)
 

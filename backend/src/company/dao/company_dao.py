@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from src.models.model import Company
+from models.model import Company
 
 
 class CompanyDAO(ABC):

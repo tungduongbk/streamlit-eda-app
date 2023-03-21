@@ -3,10 +3,10 @@ from functools import lru_cache
 from typing import Optional
 
 import httpx
-from src.company.dao.company_dao import CompanyDAO
-from src.config import get_logger
-from src.exceptions import NetworkErrorException, SearchNotFoundException
-from src.models.model import Company
+from company.dao.company_dao import CompanyDAO
+from config import get_logger
+from exceptions import NetworkErrorException, SearchNotFoundException
+from models.model import Company
 
 __all__ = ("company_repository",)
 
