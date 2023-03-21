@@ -1,13 +1,11 @@
-import math
-
 import httpx
-import streamlit as st
-import plotly.graph_objects as go
 import pandas as pd
-
-__all__ = ("app",)
+import plotly.graph_objects as go
+import streamlit as st
 
 from .utils import millify
+
+__all__ = ("app",)
 
 
 def app():
@@ -30,15 +28,19 @@ def app():
     if len(st.session_state.ticker_favorites) > 0:
         with col1:
             st.multiselect(
-                "Select your favorite tickers", st.session_state.ticker_favorites, key="selected_tickers"
+                "Select your favorite tickers",
+                st.session_state.ticker_favorites,
+                key="selected_tickers",
             )
 
     periods = ["1mo", "3mo", "6mo"]
     columns_chart, column_period = st.columns([10, 1.8])
     with column_period:
         period = st.selectbox(
-            label="Period", options=periods,
-            index=0, label_visibility="collapsed"
+            label="Period",
+            options=periods,
+            index=0,
+            label_visibility="collapsed",
         )
     with columns_chart:
         fig = go.Figure()
@@ -48,7 +50,9 @@ def app():
         if "selected_tickers" in st.session_state:
             selected_tickers = st.session_state.selected_tickers
             if len(selected_tickers) > 0:
-                fig = plot_tickers_selection(search_ticker, selected_tickers, fig, period)
+                fig = plot_tickers_selection(
+                    search_ticker, selected_tickers, fig, period
+                )
         st.plotly_chart(fig)
 
 
@@ -82,7 +86,11 @@ def plot_tickers_selection(search_ticker, selected: list, fig, period):
         data = response.json()
         if response.status_code == 200:
             df = pd.DataFrame(data["history"])
-            fig = fig.add_trace(go.Scatter(x=df["timestamp"], y=df["value"], name=ticker, mode="lines"))
+            fig = fig.add_trace(
+                go.Scatter(
+                    x=df["timestamp"], y=df["value"], name=ticker, mode="lines"
+                )
+            )
     return fig
 
 
@@ -90,9 +98,11 @@ def plot_search_text(search_text, fig, period):
     result = call_ticker_history(search_text, period)
     data = result.json()
     if result.status_code == 200:
-        st.metric(data["symbol"].upper(),
-                  value=millify(data["history"][-1]["value"]),
-                  delta=millify(data["delta"]))
+        st.metric(
+            data["symbol"].upper(),
+            value=millify(data["history"][-1]["value"]),
+            delta=millify(data["delta"]),
+        )
         fig = plot_stocks([data], fig)
         st.session_state.current_ticker = data["symbol"]
     else:
@@ -104,5 +114,9 @@ def plot_stocks(histories: list[dict], fig):
     for his in histories:
         ticker = his["symbol"]
         df = pd.DataFrame(his["history"])
-        fig = fig.add_trace(go.Scatter(x=df["timestamp"], y=df["value"], name=ticker, mode="lines"))
+        fig = fig.add_trace(
+            go.Scatter(
+                x=df["timestamp"], y=df["value"], name=ticker, mode="lines"
+            )
+        )
     return fig

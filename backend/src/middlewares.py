@@ -1,10 +1,10 @@
 # # Installed # #
 from fastapi import Request
+from src.config import get_logger
+from src.exceptions import BaseAPIException
 
 __all__ = ("request_handler",)
 
-from src.exceptions import BaseAPIException
-from src.config import get_logger
 
 logger = get_logger()
 
@@ -18,4 +18,3 @@ async def request_handler(request: Request, call_next):
             return ex.response()
 
         raise ex
-

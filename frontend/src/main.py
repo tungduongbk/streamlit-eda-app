@@ -2,9 +2,12 @@ import streamlit as st
 from apps import dashboard, stocks
 from streamlit_option_menu import option_menu
 
-
 apps = [
-    {"func": dashboard.app, "title": "Convenience store brand dashboard", "icon": "bar-chart-fill"},
+    {
+        "func": dashboard.app,
+        "title": "Convenience store brand dashboard",
+        "icon": "bar-chart-fill",
+    },
     {"func": stocks.app, "title": "Stock trading", "icon": "graph-up-arrow"},
 ]
 

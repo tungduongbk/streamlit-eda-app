@@ -1,13 +1,15 @@
 from typing import Type
 
-from fastapi.responses import JSONResponse
 from fastapi import status as statuscode
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 __all__ = (
-    "BaseAPIException", "TickerNotFoundException",
-    "SearchNotFoundException", "NetworkErrorException",
-    "get_exception_responses"
+    "BaseAPIException",
+    "TickerNotFoundException",
+    "SearchNotFoundException",
+    "NetworkErrorException",
+    "get_exception_responses",
 )
 
 
@@ -33,10 +35,7 @@ class BaseAPIException(Exception):
         return self.message
 
     def response(self):
-        return JSONResponse(
-            content=self.data.dict(),
-            status_code=self.code
-        )
+        return JSONResponse(content=self.data.dict(), status_code=self.code)
 
     @classmethod
     def response_model(cls):

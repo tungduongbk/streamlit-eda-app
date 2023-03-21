@@ -1,7 +1,11 @@
-import pydantic
 import logging
 
-__all__ = ("api_settings", "get_logger", )
+import pydantic
+
+__all__ = (
+    "api_settings",
+    "get_logger",
+)
 
 
 class BaseSettings(pydantic.BaseSettings):
